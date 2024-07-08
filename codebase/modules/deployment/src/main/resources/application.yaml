@@ -1,0 +1,24 @@
+spring:
+  main:
+    banner-mode: off
+discount:
+  usecase:
+    calculatePriceAfterDiscount:
+      maximalDiscount: 20
+  policy:
+    quantity:
+      enabled: true
+      configuration:
+        entries:
+          - minimal: 5
+            percentageDiscount: 5
+          - minimal: 10
+            percentageDiscount: 40
+    total-price:
+      enabled: true
+      configuration:
+        entries:
+          - minimal: 100.5
+            percentageDiscount: 5.5
+          - minimal: 200
+            percentageDiscount: 7

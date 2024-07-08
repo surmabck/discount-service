@@ -24,23 +24,11 @@ buildscript {
     repositories {
         mavenCentral()
     }
-}
-
-detekt {
-    config = files("${rootDir}/detekt/detekt-config.yml")
-    baseline = file("${rootDir}/detekt/detekt-baseline.xml")
-    input = files("${projectDir}/src/main/kotlin")
-
-    reports(Action {
-        reportsDir = file("${rootDir}/detekt/generated-reports/detekt-report")
-    })
-}
-tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
-    exclude(
-        ".*/resources/.*,.*/tmp/.*",
-    )
-    jvmTarget = jvmVersion
-    classpath.setFrom(project.configurations.getByName("detekt"))
+    dependencies {
+        classpath("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml") {
+            version { strictly("2.14.2") }
+        }
+    }
 }
 
 allprojects {
@@ -102,20 +90,15 @@ subprojects {
             }
         }
     }
-    detekt {
-        config = files("${rootDir}/detekt/detekt-config.yml")
-        baseline = file("${rootDir}/detekt/detekt-baseline.xml")
-        input = files("${projectDir}/src/main/kotlin")
 
-        reports(Action {
-            reportsDir = file("${rootDir}/detekt/generated-reports/detekt-report")
-        })
+    detekt {
+        config.setFrom("${rootDir}/detekt/detekt-config.yml")
+        baseline = file("${rootDir}/detekt/detekt-baseline.xml")
+        source.setFrom("src/main/kotlin")
+
     }
-    tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
-        exclude(
-            ".*/resources/.*,.*/tmp/.*"
-        )
-        jvmTarget = jvmVersion
-        classpath.setFrom(project.configurations.getByName("detekt"))
+    tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+        exclude("**/generated/**")
     }
+
 }

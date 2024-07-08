@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  version: v1
+  title: Discount Service
+
+servers:
+  - url: 'http://localhost:8080'
+
+paths:
+  '/discounts':
+    post:
+      tags:
+        - discounts
+      summary: Calculates total price for the Order after applying all Discount Policies
+      security:
+        - basicAuth: [ ]
+      responses:
+        '200':
+          description: total price
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Price'
+        '401':
+          description: Client Unauthorized
+        '404':
+          description: discount not found
+        '500':
+          description: Internal server error
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    Order:
+      type: object
+      required:
+        - itemId
+        - quantity
+      properties:
+        itemId:
+          type: string
+        quantity:
+          type: integer
+          minimum: 1
+    Price:
+      type: object
+      required:
+        - totalPrice
+      properties:
+        totalPrice:
+          type: number
+          minimum: 0
+security:
+  - basicAuth: [ ]

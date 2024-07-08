@@ -8,6 +8,19 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/codebase" />
+            <option value="$PROJECT_DIR$/codebase/modules" />
+            <option value="$PROJECT_DIR$/codebase/modules/apps" />
+            <option value="$PROJECT_DIR$/codebase/modules/apps/discount" />
+            <option value="$PROJECT_DIR$/codebase/modules/apps/discount/application" />
+            <option value="$PROJECT_DIR$/codebase/modules/apps/discount/domain" />
+            <option value="$PROJECT_DIR$/codebase/modules/apps/discount/infrastructure" />
+            <option value="$PROJECT_DIR$/codebase/modules/apps/discount/openapi-specification" />
+            <option value="$PROJECT_DIR$/codebase/modules/apps/product" />
+            <option value="$PROJECT_DIR$/codebase/modules/apps/product/application" />
+            <option value="$PROJECT_DIR$/codebase/modules/apps/product/openapi-specification" />
+            <option value="$PROJECT_DIR$/codebase/modules/commons-web" />
+            <option value="$PROJECT_DIR$/codebase/modules/deployment" />
+            <option value="$PROJECT_DIR$/codebase/modules/security" />
           </set>
         </option>
       </GradleProjectSettings>

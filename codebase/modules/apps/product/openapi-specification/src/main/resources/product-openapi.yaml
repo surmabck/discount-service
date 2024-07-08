@@ -1,0 +1,75 @@
+openapi: 3.0.3
+info:
+  version: v1
+  title: Product Service
+
+servers:
+  - url: 'http://localhost:8080'
+
+paths:
+
+  '/products/{productId}':
+    get:
+      parameters:
+        - in: path
+          name: productId
+          required: true
+          schema:
+            $ref: '#/components/schemas/ProductId'
+      tags:
+        - Products
+      summary: Get product details
+      security:
+        - basicAuth: [ ]
+      responses:
+        '200':
+          description: Product details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '401':
+          description: Client Unauthorized
+        '404':
+          description: Product not found
+        '500':
+          description: Internal server error
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    ProductId:
+      type: string
+      pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+      minLength: 36
+      maxLength: 36
+      example:
+        - "123e4567-e89b-12d3-a456-426614174000"
+    Price:
+      type: object
+      required:
+        - value
+      properties:
+        value:
+          type: number
+          minimum: 0
+    Product:
+      type: object
+      required:
+        - productId
+        - name
+        - price
+      properties:
+        productId:
+          $ref: '#/components/schemas/ProductId'
+        name:
+          type: string
+          minLength: 3
+          maxLength: 64
+        price:
+          $ref: '#/components/schemas/Price'
+security:
+  - basicAuth: [ ]
