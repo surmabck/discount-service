@@ -3,6 +3,8 @@
 Note! There are two products available for you to query. Theirs ids:
 - 45603f96-1ef0-465c-9a7f-bb9e106e2b64
 - 45603f96-1ef0-465c-9a7f-bb9e106e2b61
+
+There is a Basic Authorization in place. Please use validUser:validPassword credentials
 ```
 
 It's a modular monolith application build with Spring Boot 3.2.x, Kotlin 1.9.x and gradle multi-project approach
@@ -15,7 +17,7 @@ There are 3 modules that one may want to start with:
 
 # How to's
 ## How to use
-Rest API is being documented by two separate openapi specifications which are exposed on:
+Rest API is being documented by two separate openapi specifications which are publicly exposed on:
 - `/discounts/_interface`
 - `/products/_interface`
 
