@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, useMainMethod = ALWAYS)
 @AutoConfigureMockMvc
-class DiscountDeploymentAcceptanceTest(@Autowired val mockMvc: MockMvc) {
+class DiscountDeploymentIntegrationTest(@Autowired val mockMvc: MockMvc) {
 
     @Test
     fun `should read discount service openapi via _interface`() {
