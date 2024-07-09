@@ -14,6 +14,10 @@ data object ZeroDiscount : Discount {
 data class PercentageDiscount (override val amount: Double): Discount {
     constructor(amount: Int) : this(amount.toDouble())
 
+    init {
+        require(amount > 0) { "Discount amount must be positive" }
+    }
+
     override fun apply(price: Money): Money =
         when {
             Money.ZERO.equals(amount) -> Money.ZERO

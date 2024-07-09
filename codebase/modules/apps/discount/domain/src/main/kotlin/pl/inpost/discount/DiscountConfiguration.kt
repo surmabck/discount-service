@@ -1,12 +1,16 @@
 package pl.inpost.discount
 
 class DiscountConfiguration(configurationEntries: List<Entry>) {
-    data class Entry(val minimalValue: Double, val discount: Discount)
+    data class Entry(val minimalValue: Double, val discount: Discount) {
+        init {
+            require(minimalValue > 0.0) { "Minimal value have to be positive" }
+        }
+    }
 
     init {
         val unique = configurationEntries.distinctBy { it.minimalValue }
         require(configurationEntries.size == unique.size) {
-            "Configurations have to have unique minimal quantities"
+            "Configurations have to have unique minimal value"
         }
     }
 
@@ -34,6 +38,4 @@ class DiscountConfiguration(configurationEntries: List<Entry>) {
     override fun hashCode(): Int {
         return configurations.hashCode()
     }
-
-
 }
