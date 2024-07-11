@@ -1,9 +1,9 @@
 package pl.inpost.discount
 
-class DiscountConfiguration(configurationEntries: List<Entry>) {
+data class DiscountConfiguration(val configurationEntries: List<Entry>) {
     data class Entry(val minimalValue: Double, val discount: Discount) {
         init {
-            require(minimalValue > 0.0) { "Minimal value have to be positive" }
+            require(minimalValue >= 0.0) { "Minimal value have to be >= 0 " }
         }
     }
 
@@ -24,18 +24,5 @@ class DiscountConfiguration(configurationEntries: List<Entry>) {
 
     override fun toString(): String {
         return "DiscountConfiguration(configurations=$configurations)"
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as DiscountConfiguration
-
-        return configurations == other.configurations
-    }
-
-    override fun hashCode(): Int {
-        return configurations.hashCode()
     }
 }

@@ -15,7 +15,7 @@ data class PercentageDiscount (override val amount: Double): Discount {
     constructor(amount: Int) : this(amount.toDouble())
 
     init {
-        require(amount > 0) { "Discount amount must be positive" }
+        require(amount >= 0) { "Discount amount must be >= 0" }
     }
 
     override fun apply(price: Money): Money =
