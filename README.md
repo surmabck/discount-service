@@ -1,4 +1,18 @@
 # About
+## Task
+The task was:
+```
+- Create a REST API that provides endpoints to:
+  - Retrieve product information by UUID.
+  - Calculate the total price for a given product and quantity, applying the necessary
+discounts.
+- Implement discount policies that:
+  - Apply a larger discount as the quantity of products increases (count-based).
+  - Apply a fixed percentage discount to the total price (percentage-based).
+- Ensure that these discount policies are configurable.
+```
+
+## Implementation 
 ```
 Note! There are two products available for you to query. Theirs ids:
 - 45603f96-1ef0-465c-9a7f-bb9e106e2b64
